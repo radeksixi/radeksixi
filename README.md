@@ -8,19 +8,21 @@ Senior AI engineer & architect in Switzerland. 14 years shipping software where 
 
 ---
 
-<a href="https://github.com/radek-sixi/sixi-asi"><img src="assets/sixi-asi-flow.svg" alt="sixi-asi, Hybrid MoE &amp; Gated DeltaNet inference engine: 1 Verify (.sixi manifest, fast index, safe GGUF loader) → 2 Plan (memory planner, exact VRAM cap, cold expert streaming) → 3 Run (C++20 / CUDA, hybrid Attention + GDN, bit-exact outputs) → 4 Accelerate (speculative decoding, fast drafting, instant state rollback) → 5 Serve (sixi-server &amp; CLI, OpenAI HTTP/SSE, thinking budget &amp; checked tool calls). +14.2% faster than llama.cpp MTP, 1.73x peak MoE speedup, &lt; 20 GiB for 27B model, 0 Python." width="100%"></a>
+<a href="https://github.com/radek-sixi/sixi-asi"><img src="assets/sixi-asi-flow.svg" alt="sixi-asi, Hybrid MoE &amp; Gated DeltaNet inference engine: 1 Verify (.sixi manifest, fast index, safe GGUF loader) → 2 Plan (memory planner, exact VRAM cap, cold expert streaming) → 3 Run (C++20 / CUDA, hybrid Attention + GDN, bit-exact outputs) → 4 Accelerate (speculative decoding, fast drafting, instant state rollback) → 5 Serve (sixi-server &amp; CLI, OpenAI HTTP/SSE, thinking budget &amp; checked tool calls). Measured on NVIDIA Thor with identical prompt tokens: 21.9 tok/s vs ollama 21.1, llama-server draft-dflash 20.4, plain AR 11.0 on Qwen3.8-27B. 0 Python." width="100%"></a>
 
 ## sixi-asi: Hybrid MoE & Gated DeltaNet inference engine
 
-Modern open-source models combine full attention, linear attention (`Gated DeltaNet`), and hundreds of sparse experts (`MoE`) — fast on paper, but difficult to fit into predictable GPU memory and keep reproducible in production. [**sixi-asi**](https://github.com/radek-sixi/sixi-asi) is a modular C++20/CUDA inference engine built for high-efficiency execution of large open-weight models on **NVIDIA Jetson** edge devices and the latest **NVIDIA DGX Spark** unified-memory architecture — with strict memory caps, lossless speculative decoding, and **zero Python** in the runtime path.
+Hybrid open-weight models combine full attention with linear attention (`Gated DeltaNet`), whose fixed-size recurrent state cannot be truncated like a KV cache, which makes speculative decoding hard. [**sixi-asi**](https://github.com/radek-sixi/sixi-asi) is a C++20 speculative-decoding server for these models on **NVIDIA Jetson Thor** and **DGX Spark** unified-memory hardware, with llama.cpp as the compute backend and **zero Python** on the inference path. Version 0.8 is a public fork of my private research branch; every number below ships with its script and raw JSON ([write-up](https://radek-sixi.github.io/sixi-asi-speculative-decoding-hybrid-llms/)).
 
 | | Capability | What it does |
 |---|---|---|
 | **Verify & Load** | [**.sixi manifest & loader**](https://github.com/radek-sixi/sixi-asi) · C++20 | Locks model weights, quantization settings, and memory budgets into a verifiable manifest; builds a fast startup index and safely loads multi-shard GGUF models |
 | **Plan Memory** | **Memory planner** · GPU / Unified RAM | Computes the exact memory budget before execution starts (`< 20 GiB` for a 27B hybrid model on a single GPU, `< 12 GiB` low-VRAM mode, `< 80 GiB` for 512-expert MoE on **NVIDIA Jetson / DGX Spark**) and streams cold weights from host RAM or NVMe |
-| **Run** | **C++20 / CUDA engine** | Executes hybrid Attention + Gated DeltaNet layers and full Mixture-of-Experts routing without dropping selected experts, guaranteeing reproducible bit-exact outputs |
-| **Accelerate** | **Speculative decoding** | Drafts tokens ahead and verifies every step on the GPU with instant state rollback — **+14.2% faster** than `llama.cpp` across benchmarks and up to **1.73× speedup** on MoE models with zero quality loss |
-| **Serve** | **sixi-server · sixi-cli · sixi-bench** | Drop-in OpenAI-compatible HTTP/SSE server with separate token budgets for reasoning vs. final answers, loop detection, and validated tool calls |
+| **Run** | **llama.cpp backend, dual ABI** | Loads a pinned upstream llama.cpp (sm_110, CUDA graphs) through a verified ABI layout; plain AR decoding matches llama-server to the millisecond (99–100 ms/token on a 27B Q4) |
+| **Accelerate** | **Lossless speculative decoding** | Anchored suffix, embedded MTP head or DFlash2 block drafter, verified in one batched pass with **O(1) recurrent-state rollback**; lossless for greedy and sampled decoding (distribution-tested). Same tokens, same hardware: **21.9 tok/s vs ollama 21.1, llama-server draft-dflash 20.4, plain AR 11.0** |
+| **Remember** | **Prefix cache** | Live-state continuation, ring rollback and composite state snapshots (RAM/NVMe): second-turn TTFT **168 ms instead of 3.4 s** on a 1.1k-token conversation |
+| **Serve** | **sixi-server · sixi-cli · sixi-bench** | OpenAI-compatible HTTP/SSE server with a native Qwen3.8 template (byte-identical to llama.cpp's Jinja in 9/9 parity cases), reasoning budgets that force `</think>` instead of an empty answer, loop detection scoped to reasoning, and schema-validated tool calls |
+| **Prove** | **Benchmark & quality harness** | `ab_bench.py` (same prompt tokens for every engine, outputs diffed against the AR reference), `intel_eval.py` (GSM8K 28/30, HumanEval-lite 16/20 vs 27/30, 15/20 for plain AR), `template_parity.py` |
 
 ---
 
@@ -70,7 +72,7 @@ When power and mobile networks go down, cloud-dependent tools disappear first. I
 
 ## Recently
 
-- **Nov** · [**sixi-asi**](https://github.com/radek-sixi/sixi-asi): modular C++20/CUDA inference engine for hybrid linear-attention (`Gated DeltaNet`) and sparse `MoE` models (`< 20 GiB` for 27B hybrid models, `< 80 GiB` for 512-expert MoE), with lossless speculative decoding (`+14.2%` faster than `llama.cpp`), instant state rollback, and zero Python.
+- **Nov 8** · [**sixi-asi 0.8**](https://github.com/radek-sixi/sixi-asi): public fork of my speculative-decoding server for hybrid Gated-DeltaNet LLMs on NVIDIA unified memory. Same tokens, same hardware: 21.9 tok/s vs ollama 21.1, llama-server 20.4 (dflash) / 11.0 (AR); lossless for greedy and sampled decoding; prefix cache; [write-up](https://radek-sixi.github.io/sixi-asi-speculative-decoding-hybrid-llms/).
 - **Oct 26** · [**sigillo v1.0-rc**](https://github.com/radek-sixi/sigillo): open specification and reference libraries in C, Python, and TypeScript for an 87-byte signed public alert packet verifiable offline over LoRa radio.
 - **Oct** · [**sixi-observer**](https://github.com/radek-sixi/sixi-observer): open-source LoRa & RTL-SDR receiver bridge with offline node signature verification, repeater path estimation, and a live local telemetry stream.
 - **Oct 22** · [**sixi-tdeck-plus (Faro) v0.1.0**](https://github.com/radek-sixi/sixi-tdeck-plus): open-source handheld touchscreen UI, Linux desktop app, simulator, and 1-click browser flasher for MeshCore LoRa radios.
