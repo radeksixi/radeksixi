@@ -36,6 +36,24 @@ Most AI red-teaming tools tell you what *they think* broke. On a real agent, 70�
 
 ---
 
+<a href="https://github.com/radek-sixi/sixi-asi"><img src="assets/sixi-asi-flow.svg" alt="sixi-asi, C++20/CUDA hybrid MoE &amp; Gated DeltaNet inference engine: 1 Bind (.sixi + .sixi.idx, hardened GGUF v2/v3, 4096 B O_DIRECT I/O) → 2 Plan (MemoryPlanner, &lt; 20 GiB / &lt; 80 GiB, LRU/LFU expert cache, mmap/pinned PLE) → 3 Execute (CUDA sm_110, FP32 GDN state, top-k MoE with 0 drops, q8_1 &amp; nvfp4_fp32) → 4 Draft (Suffix + MTP, n_rs_seq GDN ring, GPU greedy verifier, O(1) state rollback) → 5 Serve (sixi-server, sixi-cli, HTTP/SSE, JSON tool validator). +14.2% vs llama.cpp draft-mtp (5/5 wins), 32.0 tok/s Flash-Next MoE peak, 0 Python." width="100%"></a>
+
+## sixi-asi: C++20/CUDA hybrid MoE & Gated DeltaNet inference engine
+
+[**sixi-asi**](https://github.com/radek-sixi/sixi-asi) is a native C++20/CUDA inference runtime engineered for hybrid linear-attention (`Gated DeltaNet` / `Mamba-SSM`) and sparse Mixture-of-Experts (`MoE`) architectures — with **zero Python** on the critical inference path, byte-exact VRAM planning, and `100%` lossless speculative verification.
+
+| | Component | What it does |
+|---|---|---|
+| **Bind & Stream** | [`.sixi` + `.sixi.idx`](https://github.com/radek-sixi/sixi-asi) · C++20 | Cryptographic SHA-256 binding of GGUF shards, tensor geometries, quantization recipes, and memory budgets; atomic `flock` + `fsync` `.sixi.idx` sidecar; hardened 64-bit GGUF v2/v3 parser and 4096-byte aligned `O_DIRECT` / `mmap` tensor reader |
+| **Plan & Offload** | `MemoryPlanner` · Host/NVMe | Byte-exact admission control (`< 20 GiB` for `Qwen3.8-27B` at `17.27 GiB` measured GPU footprint; `< 12 GiB` low-VRAM split; `< 80 GiB` for 512-expert `Qwen3.8-Flash-Next` with `26.82 GiB` `PLE` offloaded via `mmap` / bounded pinned ring and `LRU`/`LFU` expert cache) |
+| **Execute** | `CUDA sm_110` · `FP32 GDN` | Full `top-k` MoE routing (`0` dropped experts) with canonical ascending `expert_id` `FP32` reduction (`StrictReplay`), `FP32` Gated DeltaNet recurrent state, 40-byte `q8_1_fp32_block`, and 24-byte Blackwell `nvfp4_fp32_block` (`E2M1` + `FP8 E4M3` micro-scales + `FP32` super-scale) |
+| **Speculate** | `SuffixDrafter` + `MTP` | Fused Catch-Up + Draft-0 `MTP` execution with GPU greedy verifier (`+14.2%` throughput over `llama.cpp draft-mtp` across 5/5 benchmark suites on NVIDIA Thor; up to `32.02 tok/s` / `1.73x` on 512-expert `Qwen3.8-Flash-Next`) and `O(1)` rollback across `GDN + conv1d + KV + RNG` states (`n_rs_seq` ring) |
+| **Serve & Gate** | `sixi-server` · `sixi-cli` · `sixi-bench` | Native C++20 OpenAI-compatible HTTP/SSE server (`/v1/chat/completions`, `/metrics`) with separate `reasoning_budget_tokens` and `answer_budget_tokens`, non-mutating `LoopDetector`, and JSON Schema `ToolCallValidator` |
+
+---
+
+<a href="https://github.com/radek-sixi/sigillo"><img src="assets/sixi-lora-flow.svg" alt="Off-grid LoRa mesh &amp; authenticated field communications: 1 Sign (sigillo v1.0-rc, 87 B Ed25519 + EU CAMF frame in C99/Python/TS) → 2 Route (MeshCore SX1262, ERP &amp; 1% duty clamp) → 3 Operate (sixi-tdeck-plus / Faro LVGL 9.3 handheld &amp; PC UI) → 4 Observe (sixi-observer LoRa USB + RTL-SDR V4, Bayesian ghost-hop triangulation) → 5 Diagnose (GlassBoxEdge on 2× NVIDIA Jetson)." width="100%"></a>
+
 ## Off-grid LoRa mesh & authenticated field communications
 
 When power and mobile networks go down, cloud-dependent tools disappear first. Alongside AI security, I build a **complete open-source off-grid LoRa mesh stack** — from an 87-byte cryptographically signed alert protocol verifiable offline on a microcontroller, to a touch-first handheld UI and Linux desktop console, to an SDR/radio observer bridge:
@@ -52,6 +70,7 @@ When power and mobile networks go down, cloud-dependent tools disappear first. A
 
 ## Recently
 
+- **Nov** · [**sixi-asi**](https://github.com/radek-sixi/sixi-asi): modular C++20/CUDA(`sm_110`) inference engine for hybrid linear-attention (`Gated DeltaNet`) and sparse `MoE` models (`Qwen3.8-27B` `< 20 GiB` and 512-expert `Qwen3.8-Flash-Next` `< 80 GiB`), with fused `MTP` speculative decoding (`+14.2%` over `llama.cpp draft-mtp`), `O(1)` GPU GDN state rollback, and zero Python in the critical path.
 - **Oct 26** · [**sigillo v1.0-rc**](https://github.com/radek-sixi/sigillo): specification, conformance vectors, and reference libraries in C99 (`sigillo-c`), Python (`sigillo-py`), and TypeScript (`sigillo-ts`) for an 87-byte `Ed25519`-signed EU CAMF public alert frame verifiable offline.
 - **Oct** · [**sixi-observer**](https://github.com/radek-sixi/sixi-observer): open-source (MIT) LoRa & RTL-SDR V4 observer bridge with local Ed25519 advertisement verification, ML Bayesian ghost-hop triangulation, and a local WebSocket stream.
 - **Oct 22** · [**sixi-tdeck-plus (Faro) v0.1.0**](https://github.com/radek-sixi/sixi-tdeck-plus): open-source (Apache-2.0) LVGL 9 handheld UI, Linux desktop companion app, simulator, and 1-click browser WebSerial flasher for MeshCore LoRa devices (T-Deck Plus, T-Beam S3 Supreme, Heltec V3).
@@ -65,8 +84,8 @@ When power and mobile networks go down, cloud-dependent tools disappear first. A
 - **Agent identity & authorization:** on-behalf-of flows, non-human identities, least-privilege MCP tools.
 - **AI gateways, guardrails & evals:** Azure API Management, Content Safety, red-teaming in CI, deterministic oracles.
 - **Regulated industries:** security evidence that maps to DORA, NIS2, GDPR and the EU AI Act.
-- **Sovereign edge AI, LoRa mesh & OT/IoT:** open models on NVIDIA Jetson Thor / DGX Spark, air-gapped inference, offline-verifiable signed radio protocols ([sigillo](https://github.com/radek-sixi/sigillo)), embedded C/C++ & LVGL 9 firmware on ESP32-S3 / SX1262 LoRa mesh ([sixi-tdeck-plus](https://github.com/radek-sixi/sixi-tdeck-plus), [sixi-observer](https://github.com/radek-sixi/sixi-observer)), and agents over live telemetry ([GlassBoxEdge](https://github.com/radek-sixi/GlassBoxEdge)).
+- **Sovereign edge AI, LoRa mesh & OT/IoT:** native C++20/CUDA LLM inference ([sixi-asi](https://github.com/radek-sixi/sixi-asi)) and open models on NVIDIA Jetson Thor / DGX Spark, air-gapped inference, offline-verifiable signed radio protocols ([sigillo](https://github.com/radek-sixi/sigillo)), embedded C/C++ & LVGL 9 firmware on ESP32-S3 / SX1262 LoRa mesh ([sixi-tdeck-plus](https://github.com/radek-sixi/sixi-tdeck-plus), [sixi-observer](https://github.com/radek-sixi/sixi-observer)), and agents over live telemetry ([GlassBoxEdge](https://github.com/radek-sixi/GlassBoxEdge)).
 
-**Stack:** Python · Go · TypeScript · C# / .NET · C/C++ · Embedded (ESP32-S3, LVGL, LoRa / MeshCore) · LangGraph · Google ADK · MCP · A2A · Azure / Microsoft Foundry · GCP · AWS · vLLM · NVIDIA Jetson
+**Stack:** Python · Go · TypeScript · C# / .NET · C/C++ · CUDA · Embedded (ESP32-S3, LVGL, LoRa / MeshCore) · LangGraph · Google ADK · MCP · A2A · Azure / Microsoft Foundry · GCP · AWS · vLLM · llama.cpp · NVIDIA Jetson
 
 **Certified:** Microsoft Multi-Agent AI Solutions Expert (AI-500) · Azure Solutions Architect Expert · Azure Security Engineer · AWS Security Specialty
