@@ -12,12 +12,12 @@ Senior AI engineer & architect in Switzerland. 14 years shipping software where 
 
 ## sixi-asi: Hybrid MoE & Gated DeltaNet inference engine
 
-Modern open-weight models combine full attention, linear attention (`Gated DeltaNet`), and hundreds of sparse experts (`MoE`) — fast on paper, but difficult to fit into predictable GPU memory and keep reproducible in production. [**sixi-asi**](https://github.com/radek-sixi/sixi-asi) is a modular C++20/CUDA inference engine built to run large hybrid models locally with strict memory caps, lossless speculative decoding, and **zero Python** in the runtime path.
+Modern open-source models combine full attention, linear attention (`Gated DeltaNet`), and hundreds of sparse experts (`MoE`) — fast on paper, but difficult to fit into predictable GPU memory and keep reproducible in production. [**sixi-asi**](https://github.com/radek-sixi/sixi-asi) is a modular C++20/CUDA inference engine built for high-efficiency execution of large open-weight models on **NVIDIA Jetson** edge devices and the latest **NVIDIA DGX Spark** unified-memory architecture — with strict memory caps, lossless speculative decoding, and **zero Python** in the runtime path.
 
 | | Capability | What it does |
 |---|---|---|
 | **Verify & Load** | [**.sixi manifest & loader**](https://github.com/radek-sixi/sixi-asi) · C++20 | Locks model weights, quantization settings, and memory budgets into a verifiable manifest; builds a fast startup index and safely loads multi-shard GGUF models |
-| **Plan Memory** | **Memory planner** · GPU / RAM | Computes the exact VRAM budget before execution starts (`< 20 GiB` for a 27B hybrid model on a single GPU, `< 12 GiB` low-VRAM mode, `< 80 GiB` for 512-expert MoE) and streams cold weights from host RAM or NVMe |
+| **Plan Memory** | **Memory planner** · GPU / Unified RAM | Computes the exact memory budget before execution starts (`< 20 GiB` for a 27B hybrid model on a single GPU, `< 12 GiB` low-VRAM mode, `< 80 GiB` for 512-expert MoE on **NVIDIA Jetson / DGX Spark**) and streams cold weights from host RAM or NVMe |
 | **Run** | **C++20 / CUDA engine** | Executes hybrid Attention + Gated DeltaNet layers and full Mixture-of-Experts routing without dropping selected experts, guaranteeing reproducible bit-exact outputs |
 | **Accelerate** | **Speculative decoding** | Drafts tokens ahead and verifies every step on the GPU with instant state rollback — **+14.2% faster** than `llama.cpp` across benchmarks and up to **1.73× speedup** on MoE models with zero quality loss |
 | **Serve** | **sixi-server · sixi-cli · sixi-bench** | Drop-in OpenAI-compatible HTTP/SSE server with separate token budgets for reasoning vs. final answers, loop detection, and validated tool calls |
@@ -87,6 +87,6 @@ When power and mobile networks go down, cloud-dependent tools disappear first. I
 - **Regulated industries:** security evidence that maps to DORA, NIS2, GDPR and the EU AI Act.
 - **Off-grid LoRa mesh & embedded systems:** offline-verifiable signed radio protocols ([sigillo](https://github.com/radek-sixi/sigillo)) and embedded C/C++ & LVGL 9 firmware on ESP32-S3 / LoRa mesh hardware ([sixi-tdeck-plus](https://github.com/radek-sixi/sixi-tdeck-plus), [sixi-observer](https://github.com/radek-sixi/sixi-observer)).
 
-**Stack:** C/C++ · CUDA · Python · Go · TypeScript · C# / .NET · Embedded (ESP32-S3, LVGL, LoRa / MeshCore) · LangGraph · Google ADK · MCP · A2A · Azure / Microsoft Foundry · GCP · AWS · vLLM · llama.cpp · NVIDIA Jetson
+**Stack:** C/C++ · CUDA · Python · Go · TypeScript · C# / .NET · Embedded (ESP32-S3, LVGL, LoRa / MeshCore) · LangGraph · Google ADK · MCP · A2A · Azure / Microsoft Foundry · GCP · AWS · vLLM · llama.cpp · NVIDIA Jetson & DGX Spark
 
 **Certified:** Microsoft Multi-Agent AI Solutions Expert (AI-500) · Azure Solutions Architect Expert · Azure Security Engineer · AWS Security Specialty
