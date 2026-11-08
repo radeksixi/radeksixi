@@ -4,7 +4,7 @@
 
 Senior AI engineer & architect in Switzerland. 14 years shipping software where failure is expensive: native C/C++ & CUDA runtimes, defence edge devices, an IoT platform for global pharma, resilient off-grid LoRa mesh systems, and an agentic AI platform over live building telemetry. Today I build deterministic local LLM runtimes, attack agents, measure the tools that do it, and publish the raw numbers — including the ones where my own tool loses.
 
-[Portfolio](https://radeksixi.web.app/) · [Writing (radek-sixi.github.io)](https://radek-sixi.github.io) · [LinkedIn](https://www.linkedin.com/in/radekb/) · [X](https://x.com/radeksixi) · **Open to remote roles and contracts from November 2026.**
+[Portfolio](https://radeksixi.web.app/) · [Writing (radek-sixi.github.io)](https://radek-sixi.github.io) · [contact@sixi.ai](mailto:contact@sixi.ai) · [X](https://x.com/radeksixi) · **Open to remote roles and contracts from November 2026.**
 
 ---
 
