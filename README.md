@@ -26,7 +26,7 @@ Hybrid open-weight models combine full attention with linear attention (`Gated D
 
 ---
 
-<a href="https://github.com/radeksixi/agent-redteam-benchmark"><img src="assets/sixi-flow.svg" alt="Sixi, measured security for AI agents: 1 Reach (redwire, PyRIT A2ATarget) → 2 Attack (sixi-scanner) → 3 Judge (oracles, laya-as-judge) → 4 Prove (agent-redteam-benchmark) → 5 Ship (--format sarif), with every fix measured on the benchmark before it ships. sixi-scanner v0.8.4: precision 0.821 and recall 0.571 (both 1st of seven tools), 1.000 precision on multi-turn sessions." width="100%"></a>
+<a href="https://github.com/radeksixi/agent-redteam-benchmark"><img src="assets/sixi-flow.svg" alt="Sixi, measured security for AI agents: 1 Reach (PyRIT A2ATarget) → 2 Attack (sixi-scanner) → 3 Judge (oracles, laya-as-judge) → 4 Prove (agent-redteam-benchmark) → 5 Ship (--format sarif), with every fix measured on the benchmark before it ships. sixi-scanner v0.8.4: precision 0.821 and recall 0.571 (both 1st of seven tools), 1.000 precision on multi-turn sessions." width="100%"></a>
 
 ## Sixi: measured security for AI agents
 
@@ -34,7 +34,6 @@ Most AI red-teaming tools tell you what *they think* broke. On a real agent, 70�
 
 | | Project | What it does |
 |---|---|---|
-| **Reach** | [**redwire**](https://github.com/radeksixi/redwire) · Go | One `Send()` to any agent over REST, MCP, A2A, WebSocket or a chat widget. SSRF-guarded |
 | **Attack & Ship** | [**sixi-scanner**](https://github.com/radeksixi/sixi-scanner) · Go | Red-team scanner for LLM agents: 27 single- and multi-turn techniques, one binary, zero dependencies, **no LLM inside** by default. Every finding carries the prompt and reply behind it. Reports as JSON, SARIF 2.1.0 (for GitHub Security tab / CI gates; an unreachable target fails, never passes) or Markdown. **New in [v0.9.0](https://github.com/radeksixi/sixi-scanner/releases/tag/v0.9.0):** a scan that could not test everything exits `3` and lists what was not tested in every format, and rule recitation is its own finding ([write-up](https://radeksixi.github.io/sixi-scanner-no-findings-is-not-a-pass/)) |
 | **Judge** | [**laya-as-judge**](https://github.com/radeksixi/laya-as-judge) · Python | Local LLM-as-a-judge with typed verdicts in milliseconds; deterministic oracles first, a model only when unsure |
 | **Prove** | [**agent-redteam-benchmark**](https://github.com/radeksixi/agent-redteam-benchmark) · Python | Seven red-teaming tools vs one real Microsoft Foundry agent, scored from the wire by 10 oracles + a tool-blind judge. Raw findings published |
