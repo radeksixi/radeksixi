@@ -65,15 +65,6 @@ At [**Sixi Lab (`sixi.ai`)**](https://sixi.ai) I engineer **Rifugio** — autono
 
 ---
 
-## Recently
-
-- **Nov 13** · [**laya-as-judge v0.4.0 (Laya-Omega)**](https://radeksixi.github.io/laya-as-judge-omega-11-of-11-benchmarks/) — 11/11 benchmark wins over Gemini Decision 1 across 2,250 questions, Top-1 ECE 0.0234, $0.77 total cost.
-- **Nov 12** · [**sixi-asi 0.11**](https://radeksixi.github.io/sixi-asi-0-11-32-streams-on-jetson-thor/) — 32 concurrent Qwen3.8-27B streams on one Jetson AGX Thor at 170 tok/s in 27 GB instead of 70 GB; < 3 s agent follow-ups.
-- **Nov 12** · [**Faro v0.12.1**](https://radeksixi.github.io/faro-0-12-1-flash-safety-wifi-and-five-boards/) — CRC32 flash recovery, hardened phone Wi-Fi setup, 2/3-byte repeater paths, Polish UI, and 5 ESP32-S3 boards.
-- **Nov 11** · [**sixi-scanner v0.9.1**](https://radeksixi.github.io/sixi-scanner-no-findings-is-not-a-pass/) — unreachable targets fail, partial coverage exits `3` with untested checks listed in JSON/SARIF/Markdown.
-- **Nov 10** · [**sixi-asi 0.9**](https://radeksixi.github.io/sixi-asi-0-9-thor-kernels-long-context/) — 45.3 tok/s single-stream (3.8× AR) on Jetson Thor + 1.0 s follow-up at 63k context.
-- **Oct 26** · [**sigillo v1.1-rc**](https://radeksixi.github.io/sigillo-87-byte-signed-alerts-for-lora/) — 87-byte Ed25519-signed EU CAMF radio alerts in C99, Python, and TypeScript.
-
 ## Focus & Stack
 
 - **Focus:** Local C++/CUDA LLM runtimes ([sixi-asi](https://github.com/radeksixi/sixi-asi)) · Calibrated hybrid AI evaluation ([laya-as-judge](https://github.com/radeksixi/laya-as-judge)) · Agent red-teaming & identity/governance on Microsoft Foundry & Google ADK ([sixi-scanner](https://github.com/radeksixi/sixi-scanner)) · Off-grid LoRa mesh & embedded firmware ([Sixi Lab](https://sixi.ai)).
