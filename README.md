@@ -12,13 +12,14 @@
 
 <a href="https://github.com/radeksixi/sixi-asi"><img src="assets/sixi-asi-flow.svg" alt="sixi-asi, Hybrid MoE &amp; Gated DeltaNet inference engine: 1 Verify (.sixi manifest) → 2 Plan (memory planner) → 3 Run (C++20 / CUDA) → 4 Accelerate (speculative decoding) → 5 Serve (sixi-server &amp; CLI). Measured on NVIDIA Jetson AGX Thor: 45.3 tok/s single stream and 170 tok/s across 32 concurrent streams in 27 GB on Qwen3.8-27B. 0 Python." width="100%"></a>
 
-C++20/CUDA speculative-decoding server for hybrid full-attention + `Gated DeltaNet` + sparse MoE models on **NVIDIA Jetson Thor** and **DGX Spark** unified memory, built on llama.cpp with **zero Python** on the runtime path (`v0.11` — [0.11 write-up](https://radeksixi.github.io/sixi-asi-0-11-32-streams-on-jetson-thor/), [0.9 write-up](https://radeksixi.github.io/sixi-asi-0-9-thor-kernels-long-context/), [0.8 write-up](https://radeksixi.github.io/sixi-asi-speculative-decoding-hybrid-llms/)).
+C++20/CUDA speculative-decoding server for hybrid full-attention + `Gated DeltaNet` + sparse MoE models on **NVIDIA Jetson Thor** and **DGX Spark** unified memory, built on llama.cpp with **zero Python** on the runtime path (`v1.0.0-rc1` — [1.0.0-rc1 write-up](https://radeksixi.github.io/sixi-asi-1-0-rc1-download-and-run-on-jetson-thor/), [0.11 write-up](https://radeksixi.github.io/sixi-asi-0-11-32-streams-on-jetson-thor/), [0.9 write-up](https://radeksixi.github.io/sixi-asi-0-9-thor-kernels-long-context/), [0.8 write-up](https://radeksixi.github.io/sixi-asi-speculative-decoding-hybrid-llms/)).
 
 | Stage | What it does |
 |---|---|
 | **Verify & Plan** | Verifiable `.sixi` manifest + memory planner that locks exact VRAM/RAM budgets up front (`< 20 GiB` for 27B hybrid, `< 12 GiB` low-VRAM, `< 80 GiB` for 512-expert MoE) |
 | **Accelerate** | Lossless speculative decoding with **O(1) recurrent-state rollback**, block drafters, and a 106-line Thor kernel patch: **45.3 tok/s** single-stream on Qwen3.8-27B (**3.8× AR**, level with TensorRT Edge-LLM NVFP4 on plain GGUF) |
 | **Scale (`v0.11`)** | Input-log replay instead of 144 MiB state snapshots per row: **32 concurrent streams at 170 tok/s in 27 GB** (down from 70 GB); 16 long-prompt agents wait **< 3 s** instead of 442 s |
+| **Download & run (`v1.0.0-rc1`)** | One ready-to-run archive for the Jetson AGX Thor ([download](https://github.com/radeksixi/sixi-asi/releases/tag/v1.0.0-rc1)): `./sixi pull && ./sixi chat`, an OpenAI-compatible server that installs as a background service, JSON answers constrained by a schema (**120 of 120** valid against 103 without). Measured on the archive: **44 tok/s** single-stream (llama.cpp v1.0.0 with built-in MTP drafts: 29), **171 tok/s** across 32 streams |
 | **Remember & Serve** | Cross-request prefix cache (**1.0 s** vs 209 s follow-up at 63k context), OpenAI-compatible HTTP/SSE server, native Qwen3.8 template, reasoning budgets, and schema-checked tool calls |
 
 ---
