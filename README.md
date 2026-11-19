@@ -44,6 +44,13 @@ Calibrated typed-decision evaluation engine (`v0.4.0 Laya-Omega`, Python · CUDA
 
 On a real enterprise agent, 70–97% of generic red-teaming flags were false alarms. I build a static Go scanner and a wire-level benchmark that separate real violations from noise ([v1.0.0 benchmarks & live MCP/A2A](https://radeksixi.github.io/sixi-scanner-1-0-benchmarks-mcp-a2a-and-six-live-bugs/), [v0.10.0 architecture](https://radeksixi.github.io/sixi-scanner-0-10-mcp-a2a-tool-policy-and-structural-oracles/), [benchmark write-up](https://radeksixi.github.io/agent-redteam-benchmark-findings/)).
 
+<a href="https://radeksixi.github.io/sixi-scanner-1-0-benchmarks-mcp-a2a-and-six-live-bugs/">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/sixi-scanner-1-0-defence-ladder-dark.svg">
+    <img src="assets/sixi-scanner-1-0-defence-ladder-light.svg" alt="Live 3-rung defence ladder on a banking AI agent: unprotected (18 secret leaks, 8 findings) vs prompt-only rules (7 leaks, opened Swahili/poetry leaks) vs hardened guards (0 leaks, 15 blocked, yet 3-turn sleeper-memory still got through)." width="100%">
+  </picture>
+</a>
+
 | Project | What it does |
 |---|---|
 | [**sixi-scanner**](https://github.com/radeksixi/sixi-scanner) · Go (`v1.0.0`) | Zero-dependency Go CLI scanner: **45 single- and multi-turn probes** (7 structural oracles for EchoLeak Markdown, Unicode/BiDi smuggling, SSTI, ANSI, XSS, CSV, JSON schema), native **`mcp` / `a2a` connectors**, passive **`surface`** tool-poisoning & A2A trust-posture scan, **deterministic per-call & cumulative session tool policies** on wire traces, `--log-jsonl` observability, **`diff`**, `--reproduce`, `--redact`, SARIF 2.1.0 & HTML reports. Foundry replay: **0.763 zero-LLM marker precision (-38% FPs)**; Foundry v0.8.4 full run: **1st of 7 tools** on precision (**0.821**) and recall (**0.571**), **1.000 multi-turn precision (22/22)** |
