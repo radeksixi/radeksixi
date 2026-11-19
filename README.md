@@ -4,30 +4,42 @@
 
 [Sixi Lab (sixi.ai)](https://sixi.ai) · [Portfolio](https://radeksixi.web.app/) · [Writing (radeksixi.github.io)](https://radeksixi.github.io) · [Work with me](https://radeksixi.github.io/work/) · [contact@sixi.ai](mailto:contact@sixi.ai) · [X](https://x.com/radeksixi) · **Open to remote roles and contracts.**
 
-<a href="https://sixi.ai"><img src="assets/sixi-lab-overview.svg" alt="Sixi Lab overview: 1 Infer (sixi-asi, C++20/CUDA, 45.3 tok/s single-stream, 32 streams at 170 tok/s) → 2 Evaluate (laya-as-judge, 11/11 wins over Gemini Decision 1, ECE 0.0234, $0.77) → 3 Red-Team (sixi-scanner, 0.821 precision, 1.000 multi-turn) · Field Core at sixi.ai (Rifugio, sigillo, Faro, sixi-observer, map.sixi.ai)." width="100%"></a>
+<a href="https://sixi.ai"><img src="assets/sixi-lab-overview.svg" alt="Sixi Lab overview: 1 Infer (sixi-asi v1.0.0-rc3, 46.0 tok/s vs TensorRT 45.4, 32 streams at 183 tok/s) → 2 Evaluate (laya-as-judge v0.4.0, 11/11 wins over Gemini Decision 1, ECE 0.0234, $0.77) → 3 Red-Team (sixi-scanner v1.0.0, 45 probes, MCP/A2A, 0.821 precision, 1.000 multi-turn) · Field Core at sixi.ai (Rifugio, sigillo, Faro, sixi-observer, map.sixi.ai)." width="100%"></a>
 
 ---
 
 ## 1. [sixi-asi](https://github.com/radeksixi/sixi-asi) — Hybrid MoE & Gated DeltaNet inference engine
 
-<a href="https://github.com/radeksixi/sixi-asi"><img src="assets/sixi-asi-flow.svg" alt="sixi-asi, Hybrid MoE &amp; Gated DeltaNet inference engine: 1 Verify (.sixi manifest) → 2 Plan (memory planner) → 3 Run (C++20 / CUDA) → 4 Accelerate (speculative decoding) → 5 Serve (sixi-server &amp; CLI). Measured on NVIDIA Jetson AGX Thor: 45.3 tok/s single stream and 170 tok/s across 32 concurrent streams in 27 GB on Qwen3.8-27B. 0 Python." width="100%"></a>
+<a href="https://github.com/radeksixi/sixi-asi"><img src="assets/sixi-asi-flow.svg" alt="sixi-asi, Hybrid MoE &amp; Gated DeltaNet inference engine: 1 Verify (.sixi manifest) → 2 Plan (memory planner) → 3 Run (C++20 / CUDA) → 4 Accelerate (speculative decoding) → 5 Serve (sixi-server &amp; CLI). Measured on NVIDIA Jetson AGX Thor: 46.0 tok/s single stream and 183 tok/s across 32 concurrent streams in 27 GB on Qwen3.8-27B. 0 Python." width="100%"></a>
 
-C++20/CUDA speculative-decoding server for hybrid full-attention + `Gated DeltaNet` + sparse MoE models on **NVIDIA Jetson Thor** and **DGX Spark** unified memory, built on llama.cpp with **zero Python** on the runtime path (`v1.0.0-rc3` — [1.0.0-rc3 write-up](https://radeksixi.github.io/sixi-asi-1-0-rc3-talking-agent-fixes-and-engine-sources/), [1.0.0-rc1 write-up](https://radeksixi.github.io/sixi-asi-1-0-rc1-download-and-run-on-jetson-thor/), [0.11 write-up](https://radeksixi.github.io/sixi-asi-0-11-32-streams-on-jetson-thor/), [0.9 write-up](https://radeksixi.github.io/sixi-asi-0-9-thor-kernels-long-context/), [0.8 write-up](https://radeksixi.github.io/sixi-asi-speculative-decoding-hybrid-llms/)).
+C++20/CUDA speculative-decoding server for hybrid full-attention + `Gated DeltaNet` + sparse MoE models on **NVIDIA Jetson Thor** and **DGX Spark** unified memory, built on llama.cpp with **zero Python** on the runtime path (`v1.0.0-rc3` · Apache-2.0 engine sources — [rc3 write-up](https://radeksixi.github.io/sixi-asi-1-0-rc3-talking-agent-fixes-and-engine-sources/), [rc1 write-up](https://radeksixi.github.io/sixi-asi-1-0-rc1-download-and-run-on-jetson-thor/), [0.11 write-up](https://radeksixi.github.io/sixi-asi-0-11-32-streams-on-jetson-thor/), [0.9 write-up](https://radeksixi.github.io/sixi-asi-0-9-thor-kernels-long-context/)).
 
-| Stage | What it does |
+<a href="https://radeksixi.github.io/sixi-asi-1-0-rc1-download-and-run-on-jetson-thor/">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/sixi-rc1-engines-dark.svg">
+    <img src="assets/sixi-rc1-engines-light.svg" alt="Qwen3.8-27B decode speed on NVIDIA Jetson AGX Thor: Sixi-ASI 1.0.0-rc1 Q4_K_M at 46.0 tok/s vs TensorRT Edge-LLM 0.11.1 NVFP4 at 45.4 tok/s, llama.cpp v1.0.0 MTP at 29.3 tok/s, and llama.cpp plain at 12.1 tok/s." width="100%">
+  </picture>
+</a>
+
+| Capability | Measured result on NVIDIA Jetson AGX Thor (`Qwen3.8-27B`) |
 |---|---|
-| **Verify & Plan** | Verifiable `.sixi` manifest + memory planner that locks exact VRAM/RAM budgets up front (`< 20 GiB` for 27B hybrid, `< 12 GiB` low-VRAM, `< 80 GiB` for 512-expert MoE) |
-| **Accelerate** | Lossless speculative decoding with **O(1) recurrent-state rollback**, block drafters, and a 106-line Thor kernel patch: **45.3 tok/s** single-stream on Qwen3.8-27B (**3.8× AR**, level with TensorRT Edge-LLM NVFP4 on plain GGUF) |
-| **Scale (`v0.11`)** | Input-log replay instead of 144 MiB state snapshots per row: **32 concurrent streams at 170 tok/s in 27 GB** (down from 70 GB); 16 long-prompt agents wait **< 3 s** instead of 442 s |
-| **Download & run (`v1.0.0-rc3`)** | One ready-to-run archive for the Jetson AGX Thor ([download](https://github.com/radeksixi/sixi-asi/releases/tag/v1.0.0-rc3)): `./sixi pull && ./sixi chat`, an OpenAI-compatible server that installs as a background service, JSON answers constrained by a schema (**118 of 120** valid against 103 without). Measured on the archive: **43 tok/s** single-stream (llama.cpp v1.0.0 with built-in MTP drafts: 29), **183 tok/s** across 32 streams. Engine sources in the repository (Apache-2.0) |
-| **Agents & voice (`v1.0.0-rc3`)** | The end of a long system prompt is kept and reused by every later call: an agent's role call takes **1.3 s instead of 3.4 s** (4.5 s instead of 15.7 s with five sessions at once). Images, request priority and a CPU speech service make a talking agent on one Thor; one-word spoken answers are heard in their language (**201 of 300** Polish clips right against 80, a "nie" no longer comes back as "Yeah.") |
-| **Remember & Serve** | Cross-request prefix cache (**1.0 s** vs 209 s follow-up at 63k context), OpenAI-compatible HTTP/SSE server, native Qwen3.8 template, reasoning budgets, and schema-checked tool calls |
+| **Speculative decoding** | Lossless **O(1) recurrent-state rollback** + block drafters + 106-line Thor kernel patch: **46.0 tok/s** single-stream on plain GGUF (`TensorRT Edge-LLM NVFP4`: 45.4, `llama.cpp v1.0.0 MTP`: 29.3, plain: 12.1) |
+| **Concurrency & memory** | Input-log replay instead of 144 MiB state snapshots per row: **32 concurrent streams at 183 tok/s in 27 GB** (was 70 GB); 16 long-prompt agents wait **2.8 s** instead of 223 s (**442 s → 2.9 s** worst case) |
+| **Multi-role agents & voice** | Reusable system-prompt states cut role calls **2.5–4×** (**1.3 s** vs 3.4 s alone; **6.6 s** vs 26.8 s at 8 sessions); schema-constrained JSON **118/120** valid; one-word Polish speech **201/300** right vs 80 |
+| **Ship & run (`v1.0.0-rc3`)** | Ready-to-run Jetson Thor archive ([download](https://github.com/radeksixi/sixi-asi/releases/tag/v1.0.0-rc3)): `./sixi pull && ./sixi chat`, OpenAI HTTP/SSE service, cross-request prefix cache (**1.0 s** vs 209 s at 63k context), Apache-2.0 engine sources |
 
 ---
 
 ## 2. [laya-as-judge](https://github.com/radeksixi/laya-as-judge) — Calibrated AI evaluation & routing
 
 Calibrated typed-decision evaluation engine (`v0.4.0 Laya-Omega`, Python · CUDA / MLX) that replaces uncalibrated single-LLM judges with fast local GPU encoders + selective cloud escalation ([write-up](https://radeksixi.github.io/laya-as-judge-omega-11-of-11-benchmarks/)).
+
+<a href="https://radeksixi.github.io/laya-as-judge-omega-11-of-11-benchmarks/">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/laya-omega-dark.svg">
+    <img src="assets/laya-omega-light.svg" alt="laya-as-judge v0.4.0 (Laya-Omega) vs Gemini Decision 1 across 2,250 real Hugging Face questions: 11/11 wins (New Yorker Caption +12.7 pp, Video-MME +9.3 pp, Mind2Web +3.4 pp), Top-1 ECE 0.0234, $0.77 total cost." width="100%">
+  </picture>
+</a>
 
 | Layer | How it works |
 |---|---|
