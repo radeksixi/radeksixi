@@ -1,10 +1,10 @@
-# Radek (Sixi)
+# Radek Brus
 
-**Senior Software Engineer & AI Architect in Switzerland.** 14 years shipping software where failure is expensive — native C++/CUDA inference runtimes, enterprise AI agent platforms, and resilient off-grid packet-radio systems. Every number below ships with its script and raw data.
+**Senior Software Engineer & AI Architect in Switzerland (Locarno) · [Sixi Lab R&D](https://sixi.ai).** 14 years shipping software where failure is expensive — native C++/CUDA inference runtimes, governed enterprise AI agent platforms, and resilient off-grid packet-radio systems. Every number below ships with its script and raw data.
 
-[Sixi Lab (sixi.ai)](https://sixi.ai) · [Portfolio](https://radeksixi.web.app/) · [Writing (radeksixi.github.io)](https://radeksixi.github.io) · [Work with me](https://radeksixi.github.io/work/) · [contact@sixi.ai](mailto:contact@sixi.ai) · [X](https://x.com/radeksixi) · **Open to remote roles and contracts.**
+[Sixi Lab R&D (sixi.ai)](https://sixi.ai) · [Work with me](https://sixi.ai/en/work/) · [Sixi Assure](https://sixi.ai/en/assure/) · [Portfolio](https://radeksixi.web.app/) · [Writing (radeksixi.github.io)](https://radeksixi.github.io) · [contact@sixi.ai](mailto:contact@sixi.ai) · [X](https://x.com/radeksixi)
 
-<a href="https://sixi.ai"><img src="assets/sixi-lab-overview.svg" alt="Sixi Lab overview: 1 Infer (sixi-asi v1.0.0-rc3, 46.0 tok/s vs TensorRT 45.4, 32 streams at 183 tok/s) → 2 Evaluate (laya-as-judge v0.4.0, 11/11 wins over Gemini Decision 1, ECE 0.0234, $0.77) → 3 Red-Team (sixi-scanner v1.0.0, 45 probes, MCP/A2A, 0.821 precision, 1.000 multi-turn) · Field Core at sixi.ai (Rifugio, sigillo, Faro, sixi-observer, map.sixi.ai)." width="100%"></a>
+<a href="https://sixi.ai"><img src="assets/sixi-lab-overview.svg" alt="Sixi Lab R&amp;D overview: 1 Infer (sixi-asi v1.0.0, 55 tok/s single stream, 46.0 vs TensorRT 45.4, 32 streams at 180 tok/s in 27 GB) → 2 Evaluate (laya-as-judge v0.4.0, 11/11 wins over Gemini Decision 1, ECE 0.0234, $0.77) → 3 Red-Team (sixi-scanner v1.0.0, 45 probes, MCP/A2A, 0.821 precision, 1.000 multi-turn) · Sixi Lab R&amp;D at sixi.ai (Sixi Assure, Rifugio, sigillo, Faro v0.12.1 for T-Deck / T-Deck MAX, map.sixi.ai)." width="100%"></a>
 
 ---
 
@@ -71,15 +71,16 @@ On a real enterprise agent, 70–97% of generic red-teaming flags were false ala
 
 ---
 
-## Rifugio & Swiss MeshCore — Off-grid field systems at [sixi.ai](https://sixi.ai)
+## Sixi Lab R&D — Sixi Assure & Rifugio at [sixi.ai](https://sixi.ai)
 
 <a href="https://sixi.ai"><img src="assets/sixi-lora-flow.svg" alt="Off-grid LoRa mesh &amp; authenticated field communications: 1 Sign (sigillo, 87-byte signed alert) → 2 Route (MeshCore) → 3 Operate (Faro handheld UI &amp; Linux console) → 4 Observe (sixi-observer) → 5 Edge AI (GlassBoxEdge)." width="100%"></a>
 
-At [**Sixi Lab (`sixi.ai`)**](https://sixi.ai) I engineer **Rifugio** — autonomous solar emergency infrastructure for Swiss [MeshCore](https://github.com/meshcore-dev/MeshCore) LoRa networks — alongside an open-source radio stack and [live Swiss topology map](https://map.sixi.ai):
+At [**Sixi Lab R&D (`sixi.ai`)**](https://sixi.ai) I offer AI governance & agent engineering ([Work with me](https://sixi.ai/en/work/)) and build **Sixi Assure** alongside **Rifugio** — autonomous solar emergency infrastructure for Swiss [MeshCore](https://github.com/meshcore-dev/MeshCore) LoRa networks — plus an open-source radio stack and [live Swiss topology map](https://map.sixi.ai):
 
 | Project | What it does |
 |---|---|
-| [**Rifugio · Sixi Lab**](https://sixi.ai) | Autonomous off-grid MeshCore emergency alert, help-request, and link-health programme for mountain valleys, with open specifications and radio bench reports |
+| [**Sixi Assure**](https://sixi.ai/en/assure/) · Sixi Lab R&D | Design-time governance for AI agent systems: one typed system model, deterministic rules with their clauses, a passport for every agent, and a signed handover pack — offered as a fixed-scope review and service |
+| [**Rifugio**](https://sixi.ai/en/rifugio/) · Sixi Lab R&D | Autonomous off-grid MeshCore emergency alert, help-request, and link-health programme for Swiss municipalities and families, with open specifications and radio bench reports |
 | [**sigillo**](https://github.com/radeksixi/sigillo) · C99 · Python · TS (`v1.1-rc`) | Fits an Ed25519-signed EU CAMF public emergency alert into **87 bytes** for LoRa radio; verifiable 100% offline, with shared test vectors and receiver profiles ([write-up](https://radeksixi.github.io/sigillo-87-byte-signed-alerts-for-lora/)) |
 | [**sixi-tdeck-plus (Faro)**](https://github.com/radeksixi/sixi-tdeck-plus) · C/C++ · LVGL 9 (`v0.12.1`) | Open-source touchscreen/keyboard UI for **LilyGo T-Deck / T-Deck Plus & T-Deck MAX**, Ubuntu desktop console for any MeshCore companion radio, offline maps, `EN/IT/DE/FR/PL`, and [WebSerial flasher](https://radeksixi.github.io/sixi-tdeck-plus/) ([write-up](https://radeksixi.github.io/faro-0-12-1-flash-safety-wifi-and-five-boards/)) |
 | [**sixi-observer**](https://github.com/radeksixi/sixi-observer) & [**GlassBoxEdge**](https://github.com/radeksixi/GlassBoxEdge) | USB LoRa / RTL-SDR receiver bridge feeding [map.sixi.ai](https://map.sixi.ai), [upstream MeshCore PRs](https://github.com/meshcore-dev/MeshCore/pulls?q=is%3Apr+author%3Aradeksixi), and air-gapped Jetson edge diagnostics |
@@ -88,6 +89,6 @@ At [**Sixi Lab (`sixi.ai`)**](https://sixi.ai) I engineer **Rifugio** — autono
 
 ## Focus & Stack
 
-- **Focus:** Local C++/CUDA LLM runtimes ([sixi-asi](https://github.com/radeksixi/sixi-asi)) · Calibrated hybrid AI evaluation ([laya-as-judge](https://github.com/radeksixi/laya-as-judge)) · Agent red-teaming & identity/governance on Microsoft Foundry & Google ADK ([sixi-scanner](https://github.com/radeksixi/sixi-scanner)) · Off-grid LoRa mesh & embedded firmware ([Sixi Lab](https://sixi.ai)).
+- **Focus:** Local C++/CUDA LLM runtimes ([sixi-asi](https://github.com/radeksixi/sixi-asi)) · Calibrated hybrid AI evaluation ([laya-as-judge](https://github.com/radeksixi/laya-as-judge)) · Agent red-teaming & design-time governance ([sixi-scanner](https://github.com/radeksixi/sixi-scanner), [Sixi Assure](https://sixi.ai/en/assure/)) · Off-grid LoRa mesh & embedded firmware ([Sixi Lab R&D](https://sixi.ai)).
 - **Stack:** C/C++ · CUDA · Python · Go · TypeScript · C#/.NET · ESP32-S3 / LVGL / LoRa (MeshCore) · llama.cpp · NVIDIA Jetson Thor & DGX Spark · Azure / GCP / AWS · MCP · A2A.
 - **Certified:** Microsoft Multi-Agent AI Solutions Expert (AI-500) · Azure Solutions Architect Expert · Azure Security Engineer · AWS Security Specialty.
