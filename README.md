@@ -4,7 +4,7 @@
 
 **Open to Senior/Principal roles & B2B contracts** — Switzerland (remote/hybrid), EU & Canada (remote).
 
-[Sixi Lab R&D (sixi.ai)](https://sixi.ai) · [Work with me](https://sixi.ai/en/work/) · [Sixi Assure](https://sixi.ai/en/assure/) · [Portfolio](https://radeksixi.web.app/) · [Writing](https://radeksixi.github.io) · [LinkedIn](https://www.linkedin.com/in/radekb/) · [contact@sixi.ai](mailto:contact@sixi.ai) · [X](https://x.com/radeksixi)
+[Sixi Lab R&D (sixi.ai)](https://sixi.ai) · [Work with me](https://sixi.ai/en/work/) · [Sixi Assure](https://sixi.ai/en/assure/) · [Profile](https://sixi.ai/en/radek/) · [Writing](https://radeksixi.github.io) · [LinkedIn](https://www.linkedin.com/in/radekb/) · [contact@sixi.ai](mailto:contact@sixi.ai) · [X](https://x.com/radeksixi)
 
 <a href="https://sixi.ai"><img src="assets/sixi-lab-overview.svg" alt="Sixi Lab R&amp;D overview: 1 Infer (sixi-asi v1.0.0, 55 tok/s single stream, 46.0 vs TensorRT 45.4, 32 streams at 180 tok/s in 27 GB) → 2 Decide &amp; Judge (laya-as-judge v1.0.0, 3-mode Decision/Judge/ActionGate API, 78.7% local $0, 12/12 red-team, 11/11 Omega) → 3 Red-Team (sixi-scanner v1.0.0, 45 probes, MCP/A2A, 0.821 precision, 1.000 multi-turn) · Sixi Lab R&amp;D at sixi.ai (Sixi Assure, Rifugio, sigillo, Faro v0.12.1 for T-Deck / T-Deck MAX, map.sixi.ai)." width="100%"></a>
 
