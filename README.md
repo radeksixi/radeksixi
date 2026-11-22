@@ -4,7 +4,7 @@
 
 [Sixi Lab R&D (sixi.ai)](https://sixi.ai) · [Work with me](https://sixi.ai/en/work/) · [Sixi Assure](https://sixi.ai/en/assure/) · [Portfolio](https://radeksixi.web.app/) · [Writing (radeksixi.github.io)](https://radeksixi.github.io) · [contact@sixi.ai](mailto:contact@sixi.ai) · [X](https://x.com/radeksixi)
 
-<a href="https://sixi.ai"><img src="assets/sixi-lab-overview.svg" alt="Sixi Lab R&amp;D overview: 1 Infer (sixi-asi v1.0.0, 55 tok/s single stream, 46.0 vs TensorRT 45.4, 32 streams at 180 tok/s in 27 GB) → 2 Evaluate (laya-as-judge v0.4.0, 11/11 wins over Gemini Decision 1, ECE 0.0234, $0.77) → 3 Red-Team (sixi-scanner v1.0.0, 45 probes, MCP/A2A, 0.821 precision, 1.000 multi-turn) · Sixi Lab R&amp;D at sixi.ai (Sixi Assure, Rifugio, sigillo, Faro v0.12.1 for T-Deck / T-Deck MAX, map.sixi.ai)." width="100%"></a>
+<a href="https://sixi.ai"><img src="assets/sixi-lab-overview.svg" alt="Sixi Lab R&amp;D overview: 1 Infer (sixi-asi v1.0.0, 55 tok/s single stream, 46.0 vs TensorRT 45.4, 32 streams at 180 tok/s in 27 GB) → 2 Decide &amp; Judge (laya-as-judge v1.0.0, 3-mode Decision/Judge/ActionGate API, 78.7% local $0, 12/12 red-team, 11/11 Omega) → 3 Red-Team (sixi-scanner v1.0.0, 45 probes, MCP/A2A, 0.821 precision, 1.000 multi-turn) · Sixi Lab R&amp;D at sixi.ai (Sixi Assure, Rifugio, sigillo, Faro v0.12.1 for T-Deck / T-Deck MAX, map.sixi.ai)." width="100%"></a>
 
 ---
 
@@ -30,23 +30,25 @@ C++20/CUDA speculative-decoding server for hybrid full-attention + `Gated DeltaN
 
 ---
 
-## 2. [laya-as-judge](https://github.com/radeksixi/laya-as-judge) — Calibrated AI evaluation & routing
+## 2. [laya-as-judge](https://github.com/radeksixi/laya-as-judge) — Calibrated Decision, Judge & Governance API (`v1.0.0`)
 
-Calibrated typed-decision evaluation engine (`v0.4.0 Laya-Omega`, Python · CUDA / MLX) that replaces uncalibrated single-LLM judges with fast local GPU encoders + selective cloud escalation ([write-up](https://radeksixi.github.io/laya-as-judge-omega-11-of-11-benchmarks/)).
+<a href="https://github.com/radeksixi/laya-as-judge"><img src="assets/laya-judged-decision-flow.svg" alt="laya-as-judge v1.0.0, Decision, Judge &amp; Governance API: 1 Decide (/v1/decisions, noul/choice/score, 0 output tokens) → 2 Route (edge-6gb / rtx-16gb 2-tier cascade &amp; joint-schema fast lane) → 3 Judge (/v1/judge, 6 presets + rubrics) → 4 Calibrate (TempScaler &amp; MetaCalibrator, Q4 ECE 0.070 → 0.029) → 5 Gate (/v1/judged-decision, deterministic policy rules first, COMMIT / FALLBACK / ABSTAIN / BLOCK)." width="100%"></a>
 
-<a href="https://radeksixi.github.io/laya-as-judge-omega-11-of-11-benchmarks/">
+Zero-output-token **Decision**, **Judge**, and hybrid **The Judged Decision** platform (`v1.0.0` · Apache-2.0 · Python SDK, CLI & FastAPI server) — scaling from a **$0.00 local 6 GB edge or single 16 GB RTX GPU** to air-gapped regulated enterprise (EU AI Act / DORA / NIS2 / [Sixi Assure](https://sixi.ai/en/assure/)) and multimodal `Laya-Omega` ([v1.0.0 solo & enterprise write-up](https://radeksixi.github.io/laya-as-judge-1-0-decision-judge-governance-for-everyone-and-enterprise/), [5 live local GPU experiments](https://radeksixi.github.io/laya-as-judge-0-7-local-decision-api-five-experiments/), [11/11 Laya-Omega write-up](https://radeksixi.github.io/laya-as-judge-omega-11-of-11-benchmarks/)).
+
+<a href="https://radeksixi.github.io/laya-as-judge-0-7-local-decision-api-five-experiments/">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/laya-omega-dark.svg">
-    <img src="assets/laya-omega-light.svg" alt="laya-as-judge v0.4.0 (Laya-Omega) vs Gemini Decision 1 across 2,250 real Hugging Face questions: 11/11 wins (New Yorker Caption +12.7 pp, Video-MME +9.3 pp, Mind2Web +3.4 pp), Top-1 ECE 0.0234, $0.77 total cost." width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/laya-v07-local-dark.svg">
+    <img src="assets/laya-v07-local-light.svg" alt="laya-as-judge v0.7.0 / v1.0.0 five live local-GPU experiments at $0 cloud cost: rtx-16gb-glide 78.7%, rtx-16gb Clef-Flash 78.0% (beating solo BF16 and 27B+), 12/12 red-team caught with 0% false blocks, Q4 ECE 0.0701 to 0.0287, and 3.3x faster 10-question long logs." width="100%">
   </picture>
 </a>
 
-| Layer | How it works |
+| Layer | How it works & measured results |
 |---|---|
-| **Local GPU Encoders** | `Laya` + `Vega-U 0.8B` with disjoint Test-Time Training handle clear decisions locally in **7–14 ms at $0.00** |
-| **Selective Cascade** | Escalates only uncertain or multimodal cases to packed Gemini Flash-Lite / Flash batches |
-| **Meta-Calibration** | 10-fold out-of-fold simplex probability calibration produces honest confidence scores instead of raw model logits |
-| **Measured Result** | **11/11 benchmark wins over Gemini Decision 1** across 2,250 questions, pooled **Top-1 ECE 0.0234** (vs 0.0250), **$0.77 total cost** |
+| **Mode 1 · Decision API** | Drop-in local `/v1/decisions` & `/v1/systemone` (`noul`/`bool`, `choice`, `score`, `0` output tokens). On **1× RTX 16 GB ($0)**: **`rtx-16gb-glide` hits 78.7%** (`11.11 GB`, `When2Call 92.5%`) and **`rtx-16gb` (`Clef-Flash`) hits 78.0%** (`11.75 GB`, `100%` Polish, `0.0%` option-order flips) — beating solo BF16 (`76.1%`) & solo 27B+ (`77.0%`) and reaching **99.1%** of Cloud Decision API (`79.4%`); `edge-6gb` fits in **5.88 GB** (`88 ms`) |
+| **Mode 2 · Judge & Calibration** | `/v1/judge` with 6 built-in presets + custom rubrics; `TemperatureScaler` & `MetaCalibrator` cut 4-bit Q4 Top-1 ECE by **59%** (`0.0701 → 0.0287` OOF, 100% top-1 invariant) |
+| **Mode 3 · The Judged Decision** | `/v1/judged-decision`: Decide → Orthogonal Judge → deterministic anti-spoofing rules (`spoofed_audit_guard_rule`, fail-closed `on_high_stakes`) → explicit **`COMMIT` / `FALLBACK` / `ABSTAIN` / `BLOCK`** + JSON `audit_trace`. **12/12 adversarial attacks caught with 0.0% false blocks & 100% benign executability** |
+| **Scale & Multimodal (`Laya-Omega`)** | Automatic joint-schema routing cuts 10-question 2k-token logs **3.3× faster** (**6.8× fewer tokens**, `12.6` vs `3.8 q/s`); hybrid `Laya-Omega` adds vision/audio/video with **11/11 wins over Gemini Decision 1** across 2,250 questions (`0.0234` ECE, `$0.77` total) |
 
 ---
 

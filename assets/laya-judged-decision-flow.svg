@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="960" height="400" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'DejaVu Sans', Helvetica, Arial, sans-serif">
+  <title>laya-as-judge v1.0.0: Local Decision, Judge &amp; Governance API — decide, route, judge, calibrate, gate</title>
+  <style>
+    .bg { fill: #ffffff; }
+    .card { fill: #f6f8fa; stroke: #d0d7de; }
+    .core { fill: #fff8f0; stroke: #e36209; stroke-width: 2; }
+    .step { fill: #57606a; font-size: 12px; font-weight: 600; letter-spacing: .12em; }
+    .q { fill: #1f2328; font-size: 15px; font-weight: 600; }
+    .repo { fill: #0969da; font-size: 13px; font-family: ui-monospace, SFMono-Regular, Menlo, 'DejaVu Sans Mono', monospace; }
+    .note { fill: #57606a; font-size: 11.8px; }
+    .title { fill: #1f2328; font-size: 22px; font-weight: 700; }
+    .sub { fill: #57606a; font-size: 13.8px; }
+    .arrow { stroke: #8c959f; stroke-width: 2; fill: none; }
+    .head { fill: #8c959f; }
+    .kpi { fill: #1f2328; font-size: 25px; font-weight: 700; }
+    .kpil { fill: #57606a; font-size: 11.8px; }
+    .accent { fill: #e36209; }
+    .rule { stroke: #d0d7de; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0d1117; }
+      .card { fill: #161b22; stroke: #30363d; }
+      .core { fill: #1f1610; stroke: #f0883e; }
+      .step, .note, .sub, .kpil { fill: #8d96a0; }
+      .q, .title, .kpi { fill: #e6edf3; }
+      .repo { fill: #4493f8; }
+      .arrow { stroke: #6e7681; }
+      .head { fill: #6e7681; }
+      .accent { fill: #f0883e; }
+      .rule { stroke: #30363d; }
+    }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path class="head" d="M0,0 L10,5 L0,10 z"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="960" height="400" rx="12"/>
+
+  <text class="title" x="32" y="46">laya-as-judge v1.0.0 <tspan class="accent">·</tspan> Decision, Judge &amp; Governance API</text>
+  <text class="sub" x="32" y="70">Zero-output-token typed decisions and calibrated agent guardrails — from a 6 GB edge GPU ($0) to air-gapped enterprise.</text>
+
+  <!-- five stages -->
+  <g>
+    <rect class="card" x="32" y="96" width="164" height="150" rx="10"/>
+    <text class="step" x="48" y="122">1 · DECIDE</text>
+    <text class="q" x="48" y="146">Typed System-1</text>
+    <text class="repo" x="48" y="174">/v1/decisions</text>
+    <text class="note" x="48" y="196">noul · choice · score</text>
+    <text class="note" x="48" y="218">0 output tokens,</text>
+    <text class="note" x="48" y="234">drop-in cloud format</text>
+  </g>
+  <path class="arrow" d="M198,171 L214,171" marker-end="url(#a)"/>
+
+  <g>
+    <rect class="core" x="218" y="96" width="164" height="150" rx="10"/>
+    <text class="step" x="234" y="122">2 · ROUTE</text>
+    <text class="q" x="234" y="146">Fit your VRAM</text>
+    <text class="repo" x="234" y="174">rtx-16gb · edge</text>
+    <text class="note" x="234" y="196">2-tier local cascade,</text>
+    <text class="note" x="234" y="218">joint-schema fast lane</text>
+    <text class="note" x="234" y="234">&amp; Omega cloud option</text>
+  </g>
+  <path class="arrow" d="M384,171 L400,171" marker-end="url(#a)"/>
+
+  <g>
+    <rect class="card" x="404" y="96" width="164" height="150" rx="10"/>
+    <text class="step" x="420" y="122">3 · JUDGE</text>
+    <text class="q" x="420" y="146">Orthogonal audit</text>
+    <text class="repo" x="420" y="174">/v1/judge</text>
+    <text class="note" x="420" y="196">6 presets + rubrics</text>
+    <text class="note" x="420" y="218">safety, faithfulness &amp;</text>
+    <text class="note" x="420" y="234">cross-family verify</text>
+  </g>
+  <path class="arrow" d="M570,171 L586,171" marker-end="url(#a)"/>
+
+  <g>
+    <rect class="core" x="590" y="96" width="164" height="150" rx="10"/>
+    <text class="step" x="606" y="122">4 · CALIBRATE</text>
+    <text class="q" x="606" y="146">Trust the score</text>
+    <text class="repo" x="606" y="174">Temp / MetaCal</text>
+    <text class="note" x="606" y="196">recovers Q4 ECE</text>
+    <text class="note" x="606" y="218">0.070 -&gt; 0.029 OOF,</text>
+    <text class="note" x="606" y="234">100% top-1 invariant</text>
+  </g>
+  <path class="arrow" d="M756,171 L772,171" marker-end="url(#a)"/>
+
+  <g>
+    <rect class="card" x="776" y="96" width="152" height="150" rx="10"/>
+    <text class="step" x="792" y="122">5 · GATE</text>
+    <text class="q" x="792" y="146">Action verdict</text>
+    <text class="repo" x="792" y="174">/v1/judged-dec</text>
+    <text class="note" x="792" y="196">policy rules first:</text>
+    <text class="note" x="792" y="218">COMMIT · FALLBACK</text>
+    <text class="note" x="792" y="234">ABSTAIN · BLOCK</text>
+  </g>
+
+  <!-- loop back -->
+  <path class="arrow" d="M852,248 L852,262 Q852,268 846,268 L122,268 Q116,268 116,262 L116,252" marker-end="url(#a)" stroke-dasharray="4 4"/>
+  <text class="note" x="176" y="290">deterministic anti-spoofing rules run on every call — every verdict emits a structured JSON audit_trace</text>
+
+  <!-- KPIs -->
+  <line class="rule" x1="32" y1="300" x2="928" y2="300"/>
+  <text class="kpil" x="32" y="324">laya-as-judge v1.0.0 · Measured live on 1&#215; RTX 16 GB ($0.00 cloud) &amp; Laya-Omega 2,250-question multimodal suite</text>
+  <g>
+    <text class="kpi" x="32" y="366">78.7%</text><text class="kpil" x="32" y="384">local 16 GB · vs 79.4% cloud</text>
+    <text class="kpi" x="216" y="366">12 / 12</text><text class="kpil" x="216" y="384">red-team caught · 0% FP</text>
+    <text class="kpi" x="404" y="366">0.0287</text><text class="kpil" x="404" y="384">Q4 ECE · 0.0234 Omega</text>
+    <text class="kpi" x="596" y="366">3.3&#215;</text><text class="kpil" x="596" y="384">faster 10-Q logs · 6.8&#215; tok</text>
+    <text class="kpi" x="780" y="366">$0.00</text><text class="kpil" x="780" y="384">local GPU · 0 output tokens</text>
+  </g>
+</svg>
