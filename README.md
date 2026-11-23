@@ -8,7 +8,7 @@
 
 [Sixi Lab R&D (sixi.ai)](https://sixi.ai) · [Work with me](https://sixi.ai/en/work/) · [Sixi Assure](https://sixi.ai/en/assure/) · [Profile](https://sixi.ai/en/radek/) · [Writing & benchmarks](https://radeksixi.github.io) · [LinkedIn](https://www.linkedin.com/in/radekb/) · [contact@sixi.ai](mailto:contact@sixi.ai) · [X](https://x.com/radeksixi)
 
-<a href="https://sixi.ai"><img src="assets/sixi-lab-overview.svg" alt="Sixi Lab R&amp;D overview: 1 Infer (sixi-asi v1.0.0) → 2 Decide &amp; Judge (laya-as-judge v1.0.0) → 3 Red-Team (sixi-scanner v1.0.0) · Sixi Assure &amp; Rifugio at sixi.ai (sigillo, Faro v0.12.1 for T-Deck / T-Deck MAX, map.sixi.ai)." width="100%"></a>
+<a href="https://sixi.ai"><img src="assets/sixi-lab-overview.svg" alt="Sixi Lab R&amp;D overview: 1 Infer (sixi-asi v1.0.0) → 2 Decide &amp; Judge (laya-as-judge v1.1.0) → 3 Red-Team (sixi-scanner v1.0.0) · Sixi Assure &amp; Rifugio at sixi.ai (sigillo, Faro v0.12.1 for T-Deck / T-Deck MAX, map.sixi.ai)." width="100%"></a>
 
 ---
 
