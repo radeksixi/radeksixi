@@ -2,12 +2,13 @@
 
 **Senior Software Engineer & AI Architect · Switzerland (Locarno) · [Sixi Lab R&D](https://sixi.ai)**
 
-14 years building enterprise AI platforms, local C++/CUDA inference, calibrated guardrails, and CI security tools (previously **Johnson Controls**, **Danone**, **Codit**).
+14 years building enterprise AI platforms, sovereign C++/CUDA inference, calibrated guardrails, and CI security tools (previously **Johnson Controls**, **Danone**, **Codit**).
+**AI-native builder:** orchestrating up to **~50 specialized agent runs/day** across 4–5 concurrent stacks (**Claude / Claude Code, Gemini API, Antigravity, OpenCode, Microsoft Foundry** + custom **LangGraph, DeepAgents & Google ADK** pipelines) for rapid R&D and shipping multiple verified systems in parallel.
 **Open to Senior/Principal roles & B2B contracts** — Switzerland (remote/hybrid), EU & Canada (remote).
 
-[sixi.ai](https://sixi.ai) · [Work with me](https://sixi.ai/en/work/) · [Sixi Assure](https://sixi.ai/en/assure/) · [Writing & benchmarks](https://radeksixi.github.io) · [LinkedIn](https://www.linkedin.com/in/radekb/) · [contact@sixi.ai](mailto:contact@sixi.ai) · [X](https://x.com/radeksixi)
+[sixi.ai](https://sixi.ai) · [Work with me](https://sixi.ai/en/work/) · [Sixi Assure](https://sixi.ai/en/assure/) · [Profile](https://sixi.ai/en/radek/) · [Writing & benchmarks](https://radeksixi.github.io) · [LinkedIn](https://www.linkedin.com/in/radekb/) · [contact@sixi.ai](mailto:contact@sixi.ai) · [X](https://x.com/radeksixi)
 
-<a href="https://radeksixi.github.io/closed-loop-redteam-guard-sixi-scanner-laya-1-2/"><img src="assets/sixi-closed-loop-offering-dark.png" alt="Sixi Lab R&amp;D Unified Offering — Closed Attack → Guard → Prove Loop (sixi-scanner v1.2.0 ↔ laya-as-judge v1.2.0) alongside sixi-asi v1.0.0 and Sixi Assure at sixi.ai" width="100%"></a>
+<a href="https://radeksixi.github.io/enterprise-agent-guardrail-and-scanner-shootout-sixi-scanner-1-3/"><img src="assets/sixi-closed-loop-offering-dark.png" alt="Sixi Lab R&amp;D Unified Offering — Closed Attack → Guard → Prove Loop (sixi-scanner v1.4.0 ↔ laya-as-judge v1.2.0) alongside sixi-asi v1.0.0 and Sixi Assure at sixi.ai" width="100%"></a>
 
 ---
 
@@ -17,9 +18,9 @@ Every open-source benchmark ships with scripts and raw artifacts on [radeksixi.g
 
 | System | What it does | Measured proof | Links |
 |---|---|---|---|
-| **[Sixi Assure](https://sixi.ai/en/assure/)**<br>*Flagship · Pilots* | Agent ownership, typed governance rules (EU AI Act, FINMA, DORA, GDPR), and signed handover packs | Design-time passports & auditability before vendors leave | [Overview](https://sixi.ai/en/assure/) · [Work](https://sixi.ai/en/work/) |
+| **[Sixi Assure](https://sixi.ai/en/assure/)**<br>*Flagship · In development* | Agent ownership, typed governance rules (EU AI Act, FINMA, DORA, GDPR), and signed handover packs | Design-time passports & auditability — early demos & pilots by arrangement | [Overview](https://sixi.ai/en/assure/) · [Work](https://sixi.ai/en/work/) |
 | **[sixi-asi](https://github.com/radeksixi/sixi-asi)**<br>*C++20 / CUDA · `v1.0.0`* | Zero-Python speculative inference engine for hybrid MoE LLMs on Jetson Thor & DGX Spark | **55 tok/s** single-stream · **32 streams @ 180 tok/s** in 27 GB | [Write-up](https://radeksixi.github.io/sixi-asi-1-0-0-qwen3-8-on-one-jetson-thor/) · [Release](https://github.com/radeksixi/sixi-asi/releases/tag/v1.0.0) |
-| **[laya-as-judge](https://github.com/radeksixi/laya-as-judge)**<br>*Python · `v1.2.0` · PyPI* | Zero-output-token Decision, Judge & 4-way `ActionGate` API + FastMCP / LangGraph middleware | **95.0% RAIL F1** · **78.7%** local `$0` · **0.29 ms** `sixi-scanner` guard | [PyPI](https://pypi.org/project/laya-as-judge/) · [HF Demo](https://huggingface.co/spaces/rbai86/laya-as-judge-demo) |
+| **[laya-as-judge](https://github.com/radeksixi/laya-as-judge)**<br>*Python · `v1.2.0` · PyPI* | Zero-output-token Decision, Judge, **6.7 ms** Drop-In (`/moderations`, `/rerank`, `/metrics`) & 4-way `ActionGate` + FastMCP / LangGraph | **95.0% RAIL F1** · **94.6%** tool guard (`392/392`) · **78.7%** local `$0` · **0.29 ms** CI guard | [PyPI](https://pypi.org/project/laya-as-judge/) · [HF Demo](https://huggingface.co/spaces/rbai86/laya-as-judge-demo) |
 | **[sixi-scanner](https://github.com/radeksixi/sixi-scanner)**<br>*Go · `v1.4.0` · PyPI / MCP* | Zero-dep agent red-teamer (50 probes + `--pack safety`), adaptive `--attacker-url` Crescendo, SQL/BOLA wire policy & `--export-laya` CI loop | **11-guardrail & 3-scanner shootout** · **99.4% MCPTox prec** · **15/15 DVMCP** | [PyPI](https://pypi.org/project/sixi-scanner/) · [Shootout](https://radeksixi.github.io/enterprise-agent-guardrail-and-scanner-shootout-sixi-scanner-1-3/) |
 
 ---
@@ -36,4 +37,4 @@ Every open-source benchmark ships with scripts and raw artifacts on [radeksixi.g
 ## Credentials & Stack
 
 - **Certified:** Microsoft Multi-Agent AI Solutions Expert (AI-500) · Azure Solutions Architect Expert · Azure Security Engineer · AWS Security Specialty.
-- **Stack:** C++20 / C99 · CUDA · Go · Python · TypeScript · Azure / Foundry · AWS · GCP · MCP · A2A · Jetson Thor · ESP32-S3 / LoRa.
+- **Stack:** C++20 / C99 · CUDA · Go · Python · TypeScript · C#/.NET · Azure / Foundry · Google ADK · LangGraph · DeepAgents · Claude Code / Gemini · AWS · GCP · MCP · A2A · Jetson Thor · ESP32-S3 / LoRa.
