@@ -1,11 +1,17 @@
 # Radek Brus
 
-**AI Architect & Software Engineer · Governed, secure Multi-Agent Systems · Turning autonomous chaos into synchronized flow.**
+> *"The technological singularity has already begun."*
 
-Locarno, Switzerland · **[Sixi Lab R&D](https://sixi.ai)** — *Why Sixi?* Born between Chinese philosophy (*Sīxī* — mindful flow) and Southern Switzerland (Ticino, postal zone 6): **Sixth Intelligence**, designing the invisible architecture, security guardrails, and Swiss-grade governance that let autonomous AI agents synchronize safely.
+If that’s true, blind acceleration is a vulnerability, not a feature.
 
-14 years building enterprise AI platforms, sovereign C++/CUDA inference, calibrated guardrails, and CI security tools (previously **Johnson Controls**, **Danone**, **Codit**).
-**AI-native builder:** orchestrating up to **~50 specialized agent runs/day** across 4–5 concurrent stacks (**Claude / Claude Code, Gemini API, Antigravity, OpenCode, Microsoft Foundry** + custom **LangGraph, DeepAgents & Google ADK** pipelines) for rapid R&D and shipping multiple verified systems in parallel.
+I’m **Radek (Sixi)** — an **AI Architect & Software Engineer** in Locarno, Switzerland ([Sixi Lab R&D](https://sixi.ai)) building the antidote to runaway autonomy. I design **governed, secure Multi-Agent Systems** where emergent intelligence stays locked in synchronized, human-aligned flow rather than spiraling into uncontrolled chaos.
+
+- **AI Architecture:** Event-driven & multi-agent orchestration — shared rhythm without fragile monoliths.
+- **AI Security:** Zero-trust boundaries, containment layers, and sixth-sense wire-level detection across agent swarms.
+- **AI Governance:** Swiss-grade precision, auditability, and hard guardrails by design — built for pharma, medtech, and regulated enterprise.
+
+**Trajectory:** 14 years across **software engineering → cloud architecture** (**Johnson Controls**, **Danone**, **Codit**) → **Agentic AI Architect**, orchestrating up to **~50 specialized agent runs/day** across 4–5 concurrent stacks (**Claude / Claude Code, Gemini API, Antigravity, OpenCode, Microsoft Foundry** + **LangGraph, DeepAgents & Google ADK**) under deterministic CI & security gates.
+*Why Sixi?* Born between Chinese philosophy (*Sīxī* — mindful flow) and Southern Switzerland (Ticino, postal zone 6): **Sixth Intelligence**.
 **Open to Senior/Principal roles & B2B contracts** — Switzerland (remote/hybrid), EU & Canada (remote).
 
 [sixi.ai](https://sixi.ai) · [Work with me](https://sixi.ai/en/work/) · [Sixi Assure](https://sixi.ai/en/assure/) · [Profile](https://sixi.ai/en/radek/) · [Writing & benchmarks](https://radeksixi.github.io) · [LinkedIn](https://www.linkedin.com/in/radekb/) · [contact@sixi.ai](mailto:contact@sixi.ai) · [X](https://x.com/radeksixi)
