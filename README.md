@@ -10,8 +10,7 @@ I’m **Sixi** — an **AI Architect & Software Engineer** in Locarno, Switzerla
 - **AI Security:** Zero-trust boundaries, containment layers, and sixth-sense wire-level detection across agent swarms.
 - **AI Governance:** Swiss-grade precision, auditability, and hard guardrails by design — built for pharma, medtech, and regulated enterprise.
 
-**Trajectory:** 14 years across **software engineering → cloud architecture** (**Johnson Controls**, **Danone**, **Codit**) → **Agentic AI Architect**, orchestrating up to **~50 specialized agent runs/day** across 4–5 concurrent stacks (**Claude / Claude Code, Gemini API, Antigravity, OpenCode, Microsoft Foundry** + **LangGraph, DeepAgents & Google ADK**) under deterministic CI & security gates.
-*Why Sixi?* Born between Chinese philosophy (*Sīxī* — mindful flow) and Southern Switzerland (Ticino, postal zone 6): **Sixth Intelligence**.
+**14 years** from **software engineering & cloud architecture** (**Johnson Controls**, **Danone**, **Codit**) to **Agentic AI Architect** — orchestrating **~50 agent runs/day** across **Claude Code, Gemini, Antigravity, OpenCode & Foundry** (+ **LangGraph, DeepAgents & ADK**) under deterministic CI gates. *Why Sixi?* *Sīxī* (mindful flow) × Ticino (postal zone 6) × **Sixth Intelligence**.
 **Open to Senior/Principal roles & B2B contracts** — Switzerland (remote/hybrid), EU & Canada (remote).
 
 [sixi.ai](https://sixi.ai) · [Work with me](https://sixi.ai/en/work/) · [Sixi Assure](https://sixi.ai/en/assure/) · [Profile](https://sixi.ai/en/radek/) · [Writing & benchmarks](https://radeksixi.github.io) · [LinkedIn](https://www.linkedin.com/in/radekb/) · [contact@sixi.ai](mailto:contact@sixi.ai) · [X](https://x.com/radeksixi)
