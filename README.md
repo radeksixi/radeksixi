@@ -1,6 +1,8 @@
 # Radek Brus
 
-**Senior Software Engineer & AI Architect · Switzerland (Locarno) · [Sixi Lab R&D](https://sixi.ai)**
+**AI Architect & Software Engineer · Governed, secure Multi-Agent Systems · Turning autonomous chaos into synchronized flow.**
+
+Locarno, Switzerland · **[Sixi Lab R&D](https://sixi.ai)** — *Why Sixi?* Born between Chinese philosophy (*Sīxī* — mindful flow) and Southern Switzerland (Ticino, postal zone 6): **Sixth Intelligence**, designing the invisible architecture, security guardrails, and Swiss-grade governance that let autonomous AI agents synchronize safely.
 
 14 years building enterprise AI platforms, sovereign C++/CUDA inference, calibrated guardrails, and CI security tools (previously **Johnson Controls**, **Danone**, **Codit**).
 **AI-native builder:** orchestrating up to **~50 specialized agent runs/day** across 4–5 concurrent stacks (**Claude / Claude Code, Gemini API, Antigravity, OpenCode, Microsoft Foundry** + custom **LangGraph, DeepAgents & Google ADK** pipelines) for rapid R&D and shipping multiple verified systems in parallel.
