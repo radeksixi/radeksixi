@@ -4,7 +4,7 @@
 
 If that’s true, blind acceleration is a vulnerability, not a feature.
 
-I’m **Radek (Sixi)** — an **AI Architect & Software Engineer** in Locarno, Switzerland ([Sixi Lab R&D](https://sixi.ai)) building the antidote to runaway autonomy. I design **governed, secure Multi-Agent Systems** where emergent intelligence stays locked in synchronized, human-aligned flow rather than spiraling into uncontrolled chaos.
+I’m **Sixi** — an **AI Architect & Software Engineer** in Locarno, Switzerland ([Sixi Lab R&D](https://sixi.ai)) building the antidote to runaway autonomy. I design **governed, secure Multi-Agent Systems** where emergent intelligence stays locked in synchronized, human-aligned flow rather than spiraling into uncontrolled chaos.
 
 - **AI Architecture:** Event-driven & multi-agent orchestration — shared rhythm without fragile monoliths.
 - **AI Security:** Zero-trust boundaries, containment layers, and sixth-sense wire-level detection across agent swarms.
